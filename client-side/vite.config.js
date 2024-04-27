@@ -8,9 +8,7 @@ export default defineConfig({
       '@mui/lab/DatePicker': '@mui/lab/DatePicker',
     },
   },
-  build: {
-    rollupOptions: {
-      external: ['axios'],
-    },
+  optimizeDeps: {
+    include: ['axios'],
   },
 });
