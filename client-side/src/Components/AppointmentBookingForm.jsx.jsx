@@ -47,7 +47,7 @@ function BookingForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/book-appointment', {
+      const response = await axios.post('https://healthtech-s2ay.vercel.app/book-appointment', {
         name,
         email,
         phoneNumber,

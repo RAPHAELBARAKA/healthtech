@@ -15,7 +15,7 @@ function ForgotPassword() {
     e.preventDefault();
     setLoading(true); // Set loading state to true when the form is submitted
     try {
-      const response = await axios.post('http://localhost:3000/password-otp', {
+      const response = await axios.post('https://healthtech-s2ay.vercel.app/password-otp', {
         email
       });
   

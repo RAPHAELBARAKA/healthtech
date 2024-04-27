@@ -39,7 +39,7 @@ function RegisterForm() {
       // Reset error state
       setError('');
     
-      const response = await axios.post("http://localhost:3000/", {
+      const response = await axios.post("https://healthtech-s2ay.vercel.app/", {
         name,
         email,
         password
