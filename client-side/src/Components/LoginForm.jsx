@@ -20,7 +20,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/login', {
+      const response = await axios.post('https://healthtech-s2ay.vercel.app/login', {
         email,
         password
       });
