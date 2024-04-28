@@ -23,6 +23,12 @@ exports.registerUser = async (req, res) => {
       });
       await newUser.save();
 
+      // Send appropriate CORS headers
+      res.setHeader('Access-Control-Allow-Origin', 'https://healthtech.vercel.app');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      res.setHeader('Access-Control-Allow-Credentials', true);
+
       // Return success message
       return res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
