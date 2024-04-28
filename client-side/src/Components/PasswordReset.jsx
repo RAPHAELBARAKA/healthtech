@@ -40,7 +40,7 @@ function PasswordReset() {
 
     try {
       setLoading(true);
-      const response = await axios.post('https://healthtech-s2ay.vercel.app/resetpassword', {
+      const response = await axios.post('http://localhost:3000/resetpassword', {
         email,
         newPassword,
       });

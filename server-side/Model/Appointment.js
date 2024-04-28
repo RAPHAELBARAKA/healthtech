@@ -4,7 +4,7 @@ mongoose.connect('mongodb+srv://health:health@health.8tfdnav.mongodb.net/health?
     console.log("connected");
 })
 .catch(() => {
-    console.log('failed');
+    console.log('failedd');
 })
 
 const appointmentSchema = new mongoose.Schema({

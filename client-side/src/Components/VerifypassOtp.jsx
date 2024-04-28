@@ -18,7 +18,7 @@ function VerifypassOtp({ email }) {
         setLoadingVerify(true);
 
         try {
-            const response = await axios.post("https://healthtech-s2ay.vercel.app/verifypassword-otp", { enteredPassOTP: passOtp });
+            const response = await axios.post("http://localhost:3000/verifypassword-otp", { enteredPassOTP: passOtp });
 
             if (response.status === 200) { 
                 alert('OTP verified');

@@ -20,31 +20,33 @@ function RegisterForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     // Check if any field is empty
     if (!name || !email || !password || !confirm) {
       setError("All fields are required");
       return;
     }
-
+  
     // Check if password matches confirmation
     if (password !== confirm) {
       setError("Password and Confirm Password do not match");
       return;
     }
-
+  
     setLoading(true);
-
+  
     try {
       // Reset error state
       setError('');
-    
-      const response = await axios.post("https://healthtech-s2ay.vercel.app/register", {
+  
+      const response = await axios.post("http://localhost:3000/", {
         name,
         email,
         password
       });
-    
+  
+      console.log(response.data); // Log response data for debugging
+  
       if (response.data.message === "User already exists") {
         setError("User already exists");
       } else if (response.data.message === "User registered successfully") {
@@ -53,13 +55,17 @@ function RegisterForm() {
         setError(response.data.message); // Set error message from response
       }
     } catch (error) {
-      console.error("Error during registration:", error);
-      setError("An error occurred during registration. Please try again later.");
+      console.error("Error during registration:", error.response); // Log detailed error
+      if (error.response && error.response.data) {
+        setError(error.response.data.message);
+      } else {
+        setError("An error occurred during registration. Please try again later.");
+      }
     } finally {
       setLoading(false); // Set loading state to false regardless of success or failure
     }
   }
-
+  
   const handlePasswordChange = (value) => {
     // Check password requirements
     const regex = /^(?=.*\d)(?=.*[!@#$%^&*])(?!.*\s).{5,15}$/;
