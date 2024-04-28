@@ -16,7 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
   origin: 'https://healthtech.vercel.app',
-  credentials: true
+  credentials: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 }));
 // Initialize session middleware
 app.use(session({
