@@ -15,7 +15,7 @@ const AppointmentController = require('./Controller/AppointmentController');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: 'https://healthtech.vercel.app',
+ origin: '*',
   credentials: true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 }));
