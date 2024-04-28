@@ -30,7 +30,7 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'client-side', 'build')));
 
 // User routes
-app.post("/", UserController.registerUser);
+app.post("/register", UserController.registerUser);
 app.post("/login", UserController.loginUser);
 app.post("/password-otp", UserController.sendPasswordOTP);
 app.post("/verifypassword-otp", UserController.verifyPasswordOTP);
