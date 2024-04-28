@@ -38,12 +38,12 @@ function RegisterForm() {
     try {
       // Reset error state
       setError('');
-  const response = await axios.post("http://localhost:3000/", {
-  name,
-  email,
-  password
-}, { withCredentials: true });
-
+  
+      const response = await axios.post("http://localhost:3000/", {
+        name,
+        email,
+        password
+      });
   
       console.log(response.data); // Log response data for debugging
   
