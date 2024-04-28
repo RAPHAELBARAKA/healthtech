@@ -5,20 +5,15 @@ const path = require('path');
 const cors = require("cors");
 
 const app = express();
-
-// Import controllers
-const UserController = require('./Controller/UserController')
-const AppointmentController = require('./Controller/AppointmentController');
-
-
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cors({
   origin: 'https://healthtech.vercel.app',
   credentials: true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 }));
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Initialize session middleware
 app.use(session({
   secret: 'your-secret-key',
@@ -28,6 +23,10 @@ app.use(session({
 
 // Serve static files from the React build folder
 app.use(express.static(path.join(__dirname, 'client-side', 'build')));
+
+// Import controllers
+const UserController = require('./Controller/UserController')
+const AppointmentController = require('./Controller/AppointmentController');
 
 // User routes
 app.post("/register", UserController.registerUser);
