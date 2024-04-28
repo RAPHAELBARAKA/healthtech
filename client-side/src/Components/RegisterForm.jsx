@@ -38,12 +38,12 @@ function RegisterForm() {
     try {
       // Reset error state
       setError('');
-    const headers = { 'Content-Type': 'application/json' };
-   const response = await axios.post("https://healthtech-s2ay.vercel.app/", {
+  const response = await axios.post("https://healthtech-s2ay.vercel.app/", {
   name,
   email,
   password
-}, { headers });
+}, { withCredentials: true });
+
   
       console.log(response.data); // Log response data for debugging
   
