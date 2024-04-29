@@ -4,10 +4,9 @@
       "src": "/(.*)",
       "dest": "http://localhost:3000/$1",
       "headers": {
-        "Access-Control-Allow-Origin": "healthtech"
+        "Access-Control-Allow-Origin": "healthtech.vercel.app"
       }
     }
   ]
 }
-
 
