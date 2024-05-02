@@ -5,11 +5,23 @@ const path = require('path');
 const cors = require("cors");
 
 const app = express();
-app.use(cors({
-  origin: 'https://healthtech.vercel.app',
-  credentials: true,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-}));
+const allowCors = (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin','https://healthtech.vercel.app'); // Consider restricting this for production
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+  next(); // Call the next middleware in the chain
+};
+
+// Apply the CORS middleware globally
+app.use(allowCors);
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
