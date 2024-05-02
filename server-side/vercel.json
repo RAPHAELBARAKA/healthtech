@@ -1,11 +1,9 @@
 {
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "http://localhost:3000/$1",
-     
-    }
-  ]
+  "version": 2,
+  "rewrites": [{
+    "source": "/(.*)",
+    "destination": "/server-side/index.js"
+  }]
 }
 
 
