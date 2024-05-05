@@ -5,23 +5,7 @@ const path = require('path');
 const cors = require("cors");
 
 const app = express();
-const allowCors = (req, res, next) => {
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin','https://healthtech.vercel.app'); // Consider restricting this for production
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
-  next(); // Call the next middleware in the chain
-};
 
-// Apply the CORS middleware globally
-app.use(allowCors);
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -40,6 +24,15 @@ app.use(express.static(path.join(__dirname, 'client-side', 'build')));
 const UserController = require('./Controller/UserController')
 const AppointmentController = require('./Controller/AppointmentController');
 
+// CORS configuration
+const corsOptions = {
+  origin: 'https://healthtech.vercel.app',
+  methods: 'GET,POST,PUT,DELETE,PATCH,OPTIONS',
+  allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept,Authorization',
+  credentials: true
+};
+app.use(cors(corsOptions));
+
 // User routes
 app.post("/register", UserController.registerUser);
 app.post("/login", UserController.loginUser);
@@ -52,11 +45,16 @@ app.post("/resetpassword", UserController.resetPassword);
 app.post('/book-appointment', AppointmentController.bookAppointment);
 app.get('/admin-appointments', AppointmentController.getAdminAppointments);
 
-// Authentication routes
-
-
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+});
+
+// Handling OPTIONS requests
+app.options('*', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://healthtech.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,PATCH,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.sendStatus(200);
 });
