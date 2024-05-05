@@ -1,20 +1,15 @@
 {
-    "version": 2,
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/server-side/$1",
-            "methods":["GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-            "headers":{
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,PATCH,OPTIONS",
-                "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-            }
-        }
-    ]
+  "version": 2,
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/server-side/$1",
+      "methods":["GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+      "headers":{
+        "Access-Control-Allow-Origin": "https://healthtech.vercel.app",
+        "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,PATCH,OPTIONS",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+      }
+    }
+  ]
 }
-
-
-
-
-
