@@ -1,6 +1,5 @@
 const mongoose = require ('mongoose')
-const mongoUri = process.env.MONGODB_URI;
-mongoose.connect(mongoUri)
+mongoose.connect('mongodb+srv://health:health@health.8tfdnav.mongodb.net/health?retryWrites=true&w=majority&appName=health')
 .then(() =>{
     console.log("connected");
 })
